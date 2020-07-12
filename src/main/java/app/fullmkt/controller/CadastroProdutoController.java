@@ -11,23 +11,26 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 
 @RestController
-public class CadastroController {
+public class CadastroProdutoController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @CrossOrigin
     @ResponseBody
     @RequestMapping(value = "/produto", method = RequestMethod.GET)
     public List<Produto> cadastroUsuarioApp() {
         return (List<Produto>) produtoRepository.findAll();
     }
 
+    @CrossOrigin
     @ResponseBody
     @RequestMapping(value = "/produto", method = RequestMethod.POST)
     public Produto Post (@RequestBody Produto produto) {
         return produtoRepository.save(produto);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/produto/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id)
     {
@@ -40,6 +43,7 @@ public class CadastroController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/produto/{id}", method = RequestMethod.GET)
     public ResponseEntity<Produto> GetById(@PathVariable(value = "id") long id)
     {
@@ -50,6 +54,7 @@ public class CadastroController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/produto/{id}", method =  RequestMethod.PUT)
     public ResponseEntity<Produto> Put(@PathVariable(value = "id") long id, @RequestBody Produto newProduto)
     {
